@@ -32,6 +32,7 @@ Usage of ore-aws:
     	Instance terminate
   ```
   
+ (ex) 
 `$ore-aws -resource=ec2 -profile=stg`
 ```
 +------------------------------------+---------------------+--------------+-----------------+----------------+---------------+---------+--------------+-----------------+------------+----------+
@@ -39,3 +40,29 @@ Usage of ore-aws:
 +------------------------------------+---------------------+--------------+-----------------+----------------+---------------+---------+--------------+-----------------+------------+----------+
 | test                           | i-076cbe7cxxxxxx | t2.micro     | ap-northeast-1c | x.x.x.x | 172.31.8.141  | running | vpc-e85a898c | subnet-729b3f2a | ebs        | test-key |
 ```
+
+- EC2
+  - 一覧  
+    - `$ ore-aws -resource=ec2 -profile=stg`
+  - 起動
+    - `$ ore-aws main.go -resource=ec2 -start -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
+  - 停止
+    - `$ ore-aws main.go -resource=ec2 -stop -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
+  - 削除
+    - `$ ore-aws main.go -resource=ec2 -terminate -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`    
+- RDS
+  - 一覧  
+    - `$ ore-aws -resource=rds -profile=stg`
+  - 起動
+    - `$ ore-aws main.go -resource=rds -start -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
+  - 停止
+    - `$ ore-aws main.go -resource=rds -stop -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
+- ELB
+  - 一覧
+  　　- `$ ore-aws -resource=elb -profile=stg`
+  - ELBのバックエンドインスタンスを取得
+    - `$ ore-aws -resource=elb -show -elbname=beaconnect-lb-1 -profile=bct-stg`
+  - ELBにバックエンドインスタンスを登録
+    - `$ ore-aws -resource=elb -register -elbname=<ELBNAME> -instances=<INSTANCEID> -profile=stg`
+  - ELBにバックエンドインスタンスを解除
+    - `$ ore-aws -resource=elb -show -elbname=beaconnect-lb-1 -profile=bct-stg`

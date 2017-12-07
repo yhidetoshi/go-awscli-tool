@@ -37,5 +37,5 @@ Usage of ore-aws:
 +------------------------------------+---------------------+--------------+-----------------+----------------+---------------+---------+--------------+-----------------+------------+----------+
 |              TAG:NAME              |     INSTANCEID      | INSTANCETYPE |       AZ        |   PRIVATEIP    |   PUBLICIP    | STATUS  |    VPCID     |    SUBNETID     | DEVICETYPE | KEYNAME  |
 +------------------------------------+---------------------+--------------+-----------------+----------------+---------------+---------+--------------+-----------------+------------+----------+
-| test                           | i-076cbe7xxxxx | t2.micro     | ap-northeast-1c | x.x.x.x | 172.31.8.141  | running | vpc-e85a898c | subnet-729b3f2a | ebs        | test-key |
+| test                           | i-076cbe7cxxxxxx | t2.micro     | ap-northeast-1c | x.x.x.x | 172.31.8.141  | running | vpc-e85a898c | subnet-729b3f2a | ebs        | test-key |
 ```

@@ -2,6 +2,9 @@
 
 Go言語でaws-sdk-goを利用してAWSを制御するツールです。
 
+(main以外のソースコード)
+(go get) https://github.com/yhidetoshi/clitoolgoaws
+
 - go buildでファイルをクロスコンパイルする
 - /usr/local/bin等の場所に保存する。(以下は /usr/local/binに `ore-aws` という名前で配置)
   

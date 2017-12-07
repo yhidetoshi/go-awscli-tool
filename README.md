@@ -32,7 +32,7 @@ Go言語でaws-sdk-goを利用してAWSを制御するツールです。
     - `$ ore-aws -resource=rds -profile=stg`
   - 起動
     - `$ ore-aws main.go -resource=rds -start -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
-  - 停止
+  - 停止
     - `$ ore-aws main.go -resource=rds -stop -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
 - ELB
   - 一覧

@@ -36,7 +36,7 @@ Go言語でaws-sdk-goを利用してAWSを制御するツールです。
     - `$ ore-aws main.go -resource=rds -stop -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
 - ELB
   - 一覧
-  　　- `$ ore-aws -resource=elb -profile=stg`
+    - `$ ore-aws -resource=elb -profile=stg`
   - ELBのバックエンドインスタンスを取得
     - `$ ore-aws -resource=elb -show -elbname=beaconnect-lb-1 -profile=bct-stg`
   - ELBにバックエンドインスタンスを登録

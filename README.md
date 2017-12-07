@@ -23,9 +23,9 @@ Go言語でaws-sdk-goを利用してAWSを制御するツールです。
     - `$ ore-aws -resource=ec2 -profile=stg`
   - 起動
     - `$ ore-aws main.go -resource=ec2 -start -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
-  - 停止
+  - 停止
     - `$ ore-aws main.go -resource=ec2 -stop -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
-  - 削除
+  - 削除
     - `$ ore-aws main.go -resource=ec2 -terminate -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`    
 - RDS
   - 一覧  

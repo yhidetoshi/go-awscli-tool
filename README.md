@@ -51,5 +51,9 @@ Go言語でaws-sdk-goを利用してAWSを制御するツールです。
     - `$ ore-aws -resource=cloudwatch -billing`
   - Alarm
     - `$ ore-aws -resource=cloudwatch`
-    
-    
+- IAM
+  - ユーザ一覧
+    - `$ ore-aws -resource=iam-user -profile=stg`
+  - グループ一覧
+    - `$ ore-aws -resource=iam-group -profile=stg`  
+    

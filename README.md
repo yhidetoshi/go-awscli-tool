@@ -41,11 +41,11 @@ Go言語でaws-sdk-goを利用してAWSを制御するツールです。
   - 一覧
     - `$ ore-aws -resource=elb -profile=stg`
   - ELBのバックエンドインスタンスを取得
-    - `$ ore-aws -resource=elb -show -elbname=beaconnect-lb-1 -profile=bct-stg`
+    - `$ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=stg`
   - ELBにバックエンドインスタンスを登録
     - `$ ore-aws -resource=elb -register -elbname=<ELBNAME> -instances=<INSTANCEID> -profile=stg`
   - ELBにバックエンドインスタンスを解除
-    - `$ ore-aws -resource=elb -show -elbname=beaconnect-lb-1 -profile=bct-stg`
+    - `$ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=stg`
 - Cloudwatch
   - Billing
     - `$ ore-aws -resource=cloudwatch -billing`

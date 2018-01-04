@@ -25,18 +25,18 @@ Go言語でaws-sdk-goを利用してAWSを制御するツールです。
   - 一覧  
     - `$ ore-aws -resource=ec2 -profile=stg`
   - 起動
-    - `$ ore-aws -resource=ec2 -start -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
+    - `$ ore-aws -resource=ec2 -start -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
   - 停止
-    - `$ ore-aws -resource=ec2 -stop -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
+    - `$ ore-aws -resource=ec2 -stop -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
   - 削除
-    - `$ ore-aws -resource=ec2 -terminate -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`    
+    - `$ ore-aws -resource=ec2 -terminate -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`    
 - RDS
   - 一覧  
     - `$ ore-aws -resource=rds -profile=stg`
   - 起動
-    - `$ ore-aws -resource=rds -start -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
+    - `$ ore-aws -resource=rds -start -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
   - 停止
-    - `$ ore-aws -resource=rds -stop -instances=<INSTANCEIDNAME> or <INSTANCEID> -profile=stg`
+    - `$ ore-aws -resource=rds -stop -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
 - ELB
   - 一覧
     - `$ ore-aws -resource=elb -profile=stg`

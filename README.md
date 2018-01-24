@@ -11,6 +11,10 @@ Go言語でaws-sdk-goを利用してAWSを制御するツールです。
 - macOSとLinux(amd64)用にクロスコンパイルしたバイナリはこちら
   - https://github.com/yhidetoshi/go-awscli-tool/tree/master/bin
   
+- 参考
+  - `GoDoc`: https://godoc.org/github.com/aws/aws-sdk-go/aws
+  - `aws-sdk-go APIリファレンス`: https://docs.aws.amazon.com/sdk-for-go/api/
+  
   
  (ex) 
 `$ore-aws -resource=ec2 -profile=stg`

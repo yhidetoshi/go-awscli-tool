@@ -34,8 +34,10 @@ Go言語でaws-sdk-goを利用してAWSを制御するツールです。
     - `$ ore-aws -resource=ec2 -stop -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
   - 削除
     - `$ ore-aws -resource=ec2 -terminate -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
-  - AMI焼き(/binのバイナリには未追加)  
+  - AMI焼き(/binのバイナリには未追加)  
     - `$ ore-aws -resource=ec2 -ami -aminame=<AMINAME> -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
+  - AMI情報を取得(/binのバイナリには未追加)  
+    - `$ ore-aws -resource=ec2 -amilist -profile=stg`
 - RDS
   - 一覧  
     - `$ ore-aws -resource=rds -profile=stg`

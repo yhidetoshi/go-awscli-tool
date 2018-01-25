@@ -39,7 +39,7 @@ Go言語でaws-sdk-goを利用してAWSを制御するツールです。
   - AMI情報を取得(/binのバイナリには未追加)  
     - `$ ore-aws -resource=ec2 -amilist -profile=stg`
   - AMIの削除(解除)(/binのバイナリには未追加)
-    - `$ resource=ec2 -deregister -amiid=<ami-id> -profile=stg`
+    - `$ ore-aws -resource=ec2 -deregister -amiid=<ami-id> -profile=stg`
   
 - RDS
   - 一覧  

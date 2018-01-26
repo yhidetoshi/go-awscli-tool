@@ -18,6 +18,10 @@ var (
 	argRegion     = flag.String("region", "ap-northeast-1", "slect Region")
 	argInstances  = flag.String("instances", "", " slect Instance ID or Instance Tag:Name or RDSinstanceName ")
 	argELBName    = flag.String("elbname", "", "input elbname")
+	argAmiName    = flag.String("aminame", "", "input ami name")
+	argAmiId      = flag.String("amiid", "", "input ami id")
+	argAMI        = flag.Bool("ami", false, "create ami")
+	argAMIList    = flag.Bool("amilist", false, "list ami")
 	argStop       = flag.Bool("stop", false, "Instance stop")
 	argStart      = flag.Bool("start", false, "Instance start")
 	argShow       = flag.Bool("show", false, "show ELB backendend Instances")
@@ -35,10 +39,21 @@ func main() {
 	elbClient := clitoolgoaws.AwsELBClient(*argProfile, *argRegion)
 	cloudwatchClient := clitoolgoaws.AwsCloudwatchClient(*argProfile, *argRegion)
 	kinesisClient := clitoolgoaws.AwsKinesisClient(*argProfile, *argRegion)
+	iamClient := clitoolgoaws.AwsIAMClient(*argProfile, *argRegion)
 
 	// EC2のコマンド
 	var ec2Instances []*string
+	var ec2InstancesAMI *string
+	exeFlag := true
 	if *argResource == "ec2" {
+		if *argAMIList {
+			clitoolgoaws.ListAMI(ec2Client, nil)
+			exeFlag = false
+		} else if *argDeregister {
+			clitoolgoaws.DeregisterAMI(ec2Client, argAmiId)
+			exeFlag = false
+		}
+
 		if *argInstances != "" {
 			ec2Instances = clitoolgoaws.GetEC2InstanceIds(ec2Client, *argInstances)
 			if *argStart {
@@ -47,11 +62,14 @@ func main() {
 				clitoolgoaws.ControlEC2Instances(ec2Client, ec2Instances, "stop")
 			} else if *argsTerminate {
 				clitoolgoaws.ControlEC2Instances(ec2Client, ec2Instances, "terminate")
+			} else if *argAMI {
+				ec2InstancesAMI = clitoolgoaws.GetEC2InstanceIdsAMI(ec2Client, *argInstances)
+				clitoolgoaws.RegisterAMI(ec2Client, argAmiName, ec2InstancesAMI)
 			} else {
-				fmt.Println("`-start` or `-stop` or `-terminate` slect option")
+				fmt.Println("`-start` or `-stop` or `-terminate` or `-ami` slect option")
 				os.Exit(1)
 			}
-		} else {
+		} else if exeFlag {
 			clitoolgoaws.ListEC2Instances(ec2Client, nil)
 		}
 	}
@@ -110,4 +128,14 @@ func main() {
 	if *argResource == "kinesis" {
 		clitoolgoaws.ListKinesis(kinesisClient, nil)
 	}
+
+	// IAM-Userコマンド
+	if *argResource == "iam-user" {
+		clitoolgoaws.ListIAMUser(iamClient, nil)
+	}
+	// IAM-Groupコマンド
+	if *argResource == "iam-group" {
+		clitoolgoaws.ListIAMGroup(iamClient, nil)
+	}
+
 }

@@ -40,7 +40,7 @@ Go言語でaws-sdk-goを利用してAWSを制御するツールです。
     - `$ ore-aws -resource=ec2 -amilist -profile=stg`
   - AMIの削除(解除)
     - `$ ore-aws -resource=ec2 -deregister -amiid=<ami-id> -profile=stg`
-  
+  - インスタンスを 複数同時に操作するときは `,` で区切り複数指定する
 - RDS
   - 一覧  
     - `$ ore-aws -resource=rds -profile=stg`

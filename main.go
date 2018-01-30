@@ -120,8 +120,6 @@ func main() {
 		}
 	}
 
-	// s3コマンド
-
 	// Cloudwatchのコマンド
 	if *argResource == "cloudwatch" {
 		if *argBilling {

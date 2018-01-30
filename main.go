@@ -40,6 +40,7 @@ func main() {
 	cloudwatchClient := clitoolgoaws.AwsCloudwatchClient(*argProfile, *argRegion)
 	kinesisClient := clitoolgoaws.AwsKinesisClient(*argProfile, *argRegion)
 	iamClient := clitoolgoaws.AwsIAMClient(*argProfile, *argRegion)
+	S3Client := clitoolgoaws.AwsS3Client(*argProfile, *argRegion)
 
 	// EC2のコマンド
 	var ec2Instances []*string
@@ -92,6 +93,10 @@ func main() {
 		}
 
 	}
+	// S3のコマンド
+	if *argResource == "s3" {
+		clitoolgoaws.ListS3Buckets(S3Client, nil)
+	}
 
 	// ELBのコマンド
 	var elasticLoadbalancers []*string
@@ -114,6 +119,8 @@ func main() {
 			clitoolgoaws.ListELB(elbClient, nil)
 		}
 	}
+
+	// s3コマンド
 
 	// Cloudwatchのコマンド
 	if *argResource == "cloudwatch" {

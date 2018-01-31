@@ -20,12 +20,14 @@ var (
 	argELBName    = flag.String("elbname", "", "input elbname")
 	argAmiName    = flag.String("aminame", "", "input ami name")
 	argAmiId      = flag.String("amiid", "", "input ami id")
+	argBucket     = flag.String("bucket", "", "input bucket name")
 	argAMI        = flag.Bool("ami", false, "create ami")
 	argAMIList    = flag.Bool("amilist", false, "list ami")
 	argStop       = flag.Bool("stop", false, "Instance stop")
 	argStart      = flag.Bool("start", false, "Instance start")
 	argShow       = flag.Bool("show", false, "show ELB backendend Instances")
 	argBilling    = flag.Bool("billing", false, "get billing info")
+	argSize       = flag.Bool("size", false, "calc bucket size")
 	argsTerminate = flag.Bool("terminate", false, "Instance terminate")
 	argRegister   = flag.Bool("register", false, "Register Instances to ELB")
 	argDeregister = flag.Bool("deregister", false, "Deregister Instances to ELB")
@@ -95,7 +97,15 @@ func main() {
 	}
 	// S3のコマンド
 	if *argResource == "s3" {
-		clitoolgoaws.ListS3Buckets(S3Client, nil)
+		if *argBucket != "" {
+			if *argShow {
+				clitoolgoaws.ListObjects(S3Client, argBucket, "bucket")
+			} else if *argSize {
+				clitoolgoaws.CalcBucketSize(S3Client, argBucket)
+			}
+		} else {
+			clitoolgoaws.ListS3Buckets(S3Client, nil)
+		}
 	}
 
 	// ELBのコマンド

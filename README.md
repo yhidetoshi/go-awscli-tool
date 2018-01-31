@@ -57,6 +57,9 @@ Go言語でaws-sdk-goを利用してAWSを制御するツールです。
     - `$ ore-aws -resource=elb -register -elbname=<ELBNAME> -instances=<INSTANCEID> -profile=stg`
   - ELBにバックエンドインスタンスを解除
     - `$ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=stg`
+- S3
+  - バケット一覧
+    - `$ ore-aws -resource=s3 -profile=stg`
 - Cloudwatch
   - Billing
     - `$ ore-aws -resource=cloudwatch -billing`

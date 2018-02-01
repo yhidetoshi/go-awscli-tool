@@ -27,7 +27,9 @@ var (
 	argStart      = flag.Bool("start", false, "Instance start")
 	argShow       = flag.Bool("show", false, "show ELB backendend Instances")
 	argBilling    = flag.Bool("billing", false, "get billing info")
+	argBucketList = flag.Bool("bucketlist", false, "get billing info")
 	argSize       = flag.Bool("size", false, "calc bucket size")
+	argSizeAll    = flag.Bool("sizeall", false, "calc all bucket size")
 	argsTerminate = flag.Bool("terminate", false, "Instance terminate")
 	argRegister   = flag.Bool("register", false, "Register Instances to ELB")
 	argDeregister = flag.Bool("deregister", false, "Deregister Instances to ELB")
@@ -95,16 +97,23 @@ func main() {
 		}
 
 	}
+
 	// S3のコマンド
+	exeFlagS3 := true
 	if *argResource == "s3" {
+		if *argSizeAll {
+			clitoolgoaws.TotalGetBucketSize(S3Client)
+			exeFlagS3 = false
+		}
+
 		if *argBucket != "" {
 			if *argShow {
-				clitoolgoaws.ListObjects(S3Client, argBucket, "bucket")
+				clitoolgoaws.ShowObjects(S3Client, argBucket)
 			} else if *argSize {
-				clitoolgoaws.CalcBucketSize(S3Client, argBucket)
+				clitoolgoaws.ShowBucketSize(S3Client, argBucket)
 			}
-		} else {
-			clitoolgoaws.ListS3Buckets(S3Client, nil)
+		} else if exeFlagS3 {
+			clitoolgoaws.ShowBuckets(S3Client)
 		}
 	}
 
@@ -112,7 +121,7 @@ func main() {
 	var elasticLoadbalancers []*string
 	if *argResource == "elb" {
 		if *argELBName != "" {
-			elasticLoadbalancers = clitoolgoaws.GetELBInfo(elbClient, *argELBName) //ポインタ
+			elasticLoadbalancers = clitoolgoaws.GetELBInfo(elbClient, *argELBName)
 			if *argShow {
 				clitoolgoaws.ListELBBackendInstances(elbClient, elasticLoadbalancers, "show")
 			} else if *argRegister && *argInstances != "" {

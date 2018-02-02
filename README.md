@@ -64,7 +64,7 @@ Go言語でaws-sdk-goを利用してAWSを制御するツールです。
     - `ore-aws -resource=s3 -show -bucket=<NAME> -profile=stg`
   - バケットのサイズ取得
     - `ore-aws -resource=s3 -size -bucket=<NAME> -profile=stg` 
-  - 1リージョン内の全バケットサイズを取得(バケットが2リージョン以上にまたがると動作しません...)
+  - 1リージョン内の全バケットサイズを取得(バケットが2リージョン以上にまたがると動作しません...)
     - `ore-aws -resource=s3 -sizeall -profile=stg`
 - Cloudwatch
   - Billing

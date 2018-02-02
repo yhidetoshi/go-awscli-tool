@@ -114,6 +114,7 @@ func main() {
 			}
 		} else if exeFlagS3 {
 			clitoolgoaws.ShowBuckets(S3Client)
+			//clitoolgoaws.CheckRegion(S3CustomClient)
 		}
 	}
 

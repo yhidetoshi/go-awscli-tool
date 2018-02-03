@@ -12,9 +12,10 @@ import (
 )
 
 const (
-	S3BUCKETLIST = "s3bucketlist"
-	S3OBJECT     = "s3object"
-	S3BUCKETSIZE = "s3bucketsize"
+	S3BUCKETLIST   = "s3bucketlist"
+	S3OBJECT       = "s3object"
+	S3BUCKETSIZE   = "s3bucketsize"
+	S3BUCKETSTATUS = "s3bucketstatus"
 )
 
 func AwsS3Client(profile string, region string) *s3.S3 {
@@ -29,6 +30,37 @@ func AwsS3Client(profile string, region string) *s3.S3 {
 	S3Client := s3.New(ses)
 
 	return S3Client
+}
+
+/*
+作成中 GetBucketPolicyでACL情報を取得する
+ -> Publicのバケットであるかを判定しバケット名を返す
+*/
+func JudgeS3PublicBucket(S3Client *s3.S3, bucketname *string) *string {
+	params := &s3.GetBucketAclInput{
+		Bucket: bucketname,
+	}
+	res, err := S3Client.GetBucketAcl(params)
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
+	// バケットがpublicであるかの判定用
+	judgePublic := false
+	for _, resInfo := range res.Grants {
+		if resInfo.Grantee.URI == nil {
+			resInfo.Grantee.URI = aws.String("NULL")
+		} else if *resInfo.Grantee.URI == "http://acs.amazonaws.com/groups/global/AllUsers" {
+			judgePublic = true
+		}
+	}
+	if judgePublic {
+		//return bucketname
+		return aws.String("Public")
+	} else {
+		return aws.String("Private")
+	}
+
 }
 
 // バケットリスト取得
@@ -135,12 +167,31 @@ func CalcBucketSize(S3Client *s3.S3, bucketname *string) int64 {
 	return sumObjectSize
 }
 
+func ShowPublicBucket(S3Client *s3.S3) {
+	var buffBucket *string
+	//var publicBuckets []string
+	result := [][]string{}
+	allBuckets := ListS3Buckets(S3Client)
+
+	for i := 0; i < len(allBuckets); i++ {
+		buffBucket = &allBuckets[i]
+		bucketStatus := JudgeS3PublicBucket(S3Client, buffBucket)
+		judgedBuckets := []string{
+			*buffBucket,
+			*bucketStatus,
+		}
+		result = append(result, judgedBuckets)
+	}
+	OutputFormat(result, S3BUCKETSTATUS)
+}
+
 func TotalGetBucketSize(S3Client *s3.S3) {
 
 	var _size int64
 	var buffBucket *string
 	totalSize := [][]string{}
 	allBuckets := ListS3Buckets(S3Client)
+
 	for i := 0; i < len(allBuckets); i++ {
 		buffBucket = &allBuckets[i]
 		_size += CalcBucketSize(S3Client, buffBucket)

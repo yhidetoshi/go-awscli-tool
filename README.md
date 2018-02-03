@@ -1,6 +1,7 @@
 # go-awscli-tool
 
-Go言語でaws-sdk-goを利用してAWSを制御するツールです。
+- Go言語でaws-sdk-goを利用してAWSを制御するツールです。
+- 使用するには awsのapiをコールできる設定が必要です。--> (./awsの設定)
 
 (main以外のソースコード)
 (go get) https://github.com/yhidetoshi/clitoolgoaws

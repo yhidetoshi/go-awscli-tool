@@ -30,6 +30,7 @@ var (
 	argBucketList = flag.Bool("bucketlist", false, "get billing info")
 	argSize       = flag.Bool("size", false, "calc bucket size")
 	argSizeAll    = flag.Bool("sizeall", false, "calc all bucket size")
+	argCheckACL   = flag.Bool("checkacl", false, "calc all bucket size")
 	argsTerminate = flag.Bool("terminate", false, "Instance terminate")
 	argRegister   = flag.Bool("register", false, "Register Instances to ELB")
 	argDeregister = flag.Bool("deregister", false, "Deregister Instances to ELB")
@@ -104,6 +105,10 @@ func main() {
 		if *argSizeAll {
 			clitoolgoaws.TotalGetBucketSize(S3Client)
 			exeFlagS3 = false
+		} else if *argCheckACL {
+			// バケットのACL情報のレスポンスを確認するため
+			clitoolgoaws.ShowPublicBucket(S3Client)
+			exeFlagS3 = false
 		}
 
 		if *argBucket != "" {
@@ -114,7 +119,6 @@ func main() {
 			}
 		} else if exeFlagS3 {
 			clitoolgoaws.ShowBuckets(S3Client)
-			//clitoolgoaws.CheckRegion(S3CustomClient)
 		}
 	}
 

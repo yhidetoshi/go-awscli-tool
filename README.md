@@ -65,6 +65,8 @@
     - `ore-aws -resource=s3 -show -bucket=<NAME> -profile=stg`
   - バケットのサイズ取得
     - `ore-aws -resource=s3 -size -bucket=<NAME> -profile=stg` 
+  - 1リージョン内の全バケットのACLがPublic or Privateかを取得する(バケットが2リージョン以上にまたがると動作しません...)
+    - `ore-aws -resource=s3 -publicacl -profile=stg`
   - 1リージョン内の全バケットサイズを取得(バケットが2リージョン以上にまたがると動作しません...)
     - `ore-aws -resource=s3 -sizeall -profile=stg`
 - Cloudwatch

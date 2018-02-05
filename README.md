@@ -1,5 +1,6 @@
-![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Go_study/gophertraining.png)
 # go-awscli-tool
+
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Go_study/gophertraining.png)
 
 - Go言語でaws-sdk-goを利用してAWSを制御するツールです。(勉強しながら作っているので、どこかできれいに作りなおします...)
 - 使用するには awsのapiをコールできる設定が必要です。--> (./awsの設定)
@@ -20,13 +21,8 @@
   
  (ex) 
 `$ore-aws -resource=ec2 -profile=stg`
-```
-+------------------------------------+---------------------+--------------+-----------------+----------------+---------------+---------+--------------+-----------------+------------+----------+
-|              TAG:NAME              |     INSTANCEID      | INSTANCETYPE |       AZ        |   PRIVATEIP    |   PUBLICIP    | STATUS  |    VPCID     |    SUBNETID     | DEVICETYPE | KEYNAME  |
-+------------------------------------+---------------------+--------------+-----------------+----------------+---------------+---------+--------------+-----------------+------------+----------+
-```
 
-### コマンドオプション
+# コマンドオプション
 - EC2
   - 一覧  
     - `$ ore-aws -resource=ec2 -profile=stg`

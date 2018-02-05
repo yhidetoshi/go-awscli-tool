@@ -61,9 +61,9 @@
 - S3
   - バケット一覧
     - `$ ore-aws -resource=s3 -profile=stg`
-  - バケットのオブジェクト一覧を取得
+  - バケットのオブジェクト一覧を取得(課題: Pageの設定をしていないため、数が多いと全件はできないので、数回実行する)
     - `ore-aws -resource=s3 -show -bucket=<BUCKETNAME> -profile=stg`
-  - バケットのサイズ取得
+  - バケットのサイズ取得(課題: Pageの設定をしていないため、数が多いと全件はできないので、数回実行する)
     - `ore-aws -resource=s3 -size -bucket=<BUCKETNAME> -profile=stg` 
   - バケットの削除(条件: bucket　is empty) ./bin配下は未反映
     - `ore-aws -resource=s3 -deletebucket -bucket=<BUCKETNAME> -profile=stg`

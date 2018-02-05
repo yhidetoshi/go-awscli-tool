@@ -1,7 +1,6 @@
-# go-awscli-tool
-
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Go_study/gophertraining.png)
 
+# go-awscli-tool
 - Go言語でaws-sdk-goを利用してAWSを制御するツールです。(勉強しながら作っているので、どこかできれいに作りなおします...)
 - 使用するには awsのapiをコールできる設定が必要です。--> (./awsの設定)
 

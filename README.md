@@ -69,6 +69,8 @@
     - `ore-aws -resource=s3 -deletebucket -bucket=<BUCKETNAME> -profile=stg`
   - オブジェクト削除 ./bin配下は未反映
     - `ore-aws -resource=s3 -deleteobject -bucket=<BUCKETNAME> -object=<FILENAME>`
+  - バケット内のオブジェクトを全て削除 ./bin配下は未反映(課題: Pageの設定をしていないため、数が多いと全件はできないので、数回実行する)
+    - `ore-aws -resource=s3 -deleteall -bucket=<BUCKETNAME>`
   - 1リージョン内の全バケットのACLがPublic or Privateかを取得する(バケットが2リージョン以上にまたがると動作しません...)
     - `ore-aws -resource=s3 -checkacl -profile=stg`
   - 1リージョン内の全バケットサイズを取得(バケットが2リージョン以上にまたがると動作しません...)

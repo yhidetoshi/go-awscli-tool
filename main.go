@@ -21,6 +21,7 @@ var (
 	argAmiName      = flag.String("aminame", "", "input ami name")
 	argAmiId        = flag.String("amiid", "", "input ami id")
 	argBucket       = flag.String("bucket", "", "input bucket name")
+	argObject       = flag.String("object", "", "input object name")
 	argAMI          = flag.Bool("ami", false, "create ami")
 	argAMIList      = flag.Bool("amilist", false, "list ami")
 	argStop         = flag.Bool("stop", false, "Instance stop")
@@ -28,7 +29,8 @@ var (
 	argShow         = flag.Bool("show", false, "show ELB backendend Instances")
 	argBilling      = flag.Bool("billing", false, "get billing info")
 	argBucketList   = flag.Bool("bucketlist", false, "get billing info")
-	argBucketDelete = flag.Bool("delete", false, "delete bucket")
+	argBucketDelete = flag.Bool("deletebucket", false, "delete bucket")
+	argObjectDelete = flag.Bool("deleteobject", false, "delete object")
 	argSize         = flag.Bool("size", false, "calc bucket size")
 	argSizeAll      = flag.Bool("sizeall", false, "calc all bucket size")
 	argCheckACL     = flag.Bool("checkacl", false, "calc all bucket size")
@@ -119,6 +121,8 @@ func main() {
 				clitoolgoaws.ShowBucketSize(S3Client, argBucket)
 			} else if *argBucketDelete {
 				clitoolgoaws.DeleteBucket(S3Client, argBucket)
+			} else if *argObjectDelete {
+				clitoolgoaws.DeleteObject(S3Client, argBucket, argObject)
 			}
 		} else if exeFlagS3 {
 			clitoolgoaws.ShowBuckets(S3Client)

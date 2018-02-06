@@ -63,9 +63,9 @@
     - `ore-aws -resource=s3 -size -bucket=<BUCKETNAME> -profile=stg` 
   - バケットの削除(条件: bucket　is empty) ./bin配下は未反映
     - `ore-aws -resource=s3 -deletebucket -bucket=<BUCKETNAME> -profile=stg`
-  - オブジェクト削除 ./bin配下は未反映
+  - オブジェクト削除
     - `ore-aws -resource=s3 -deleteobject -bucket=<BUCKETNAME> -object=<FILENAME>`
-  - バケット内のオブジェクトを全て削除 ./bin配下は未反映
+  - バケット内のオブジェクトを全て削除
     - `ore-aws -resource=s3 -deleteallobject -bucket=<BUCKETNAME>`
   - 1リージョン内の全バケットのACLがPublic or Privateかを取得する(バケットが2リージョン以上にまたがると動作しません...)
     - `ore-aws -resource=s3 -checkacl -profile=stg`

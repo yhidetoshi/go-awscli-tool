@@ -31,7 +31,7 @@ var (
 	argBucketList       = flag.Bool("bucketlist", false, "get billing info")
 	argBucketDelete     = flag.Bool("deletebucket", false, "delete bucket")
 	argObjectDelete     = flag.Bool("deleteobject", false, "delete object")
-	argObjectsAllDelete = flag.Bool("deleteall", false, "delete object")
+	argObjectsAllDelete = flag.Bool("deleteallobject", false, "delete object")
 	argSize             = flag.Bool("size", false, "calc bucket size")
 	argSizeAll          = flag.Bool("sizeall", false, "calc all bucket size")
 	argCheckACL         = flag.Bool("checkacl", false, "calc all bucket size")

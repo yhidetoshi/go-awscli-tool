@@ -67,9 +67,9 @@
     - `ore-aws -resource=s3 -deleteobject -bucket=<BUCKETNAME> -object=<FILENAME>`
   - バケット内のオブジェクトを全て削除
     - `ore-aws -resource=s3 -deleteallobject -bucket=<BUCKETNAME>`
-  - 1リージョン内の全バケットのACLがPublic or Privateかを取得する(バケットが2リージョン以上にまたがると動作しません...)
+  - Tokyoリージョン内の全バケットのACLがPublic or Privateかを取得
     - `ore-aws -resource=s3 -checkacl -profile=stg`
-  - 1リージョン内の全バケットサイズを取得(バケットが2リージョン以上にまたがると動作しません...)
+  - Tokyoリージョン内の全バケットサイズを取得
     - `ore-aws -resource=s3 -sizeall -profile=stg`
 - Cloudwatch
   - Billing

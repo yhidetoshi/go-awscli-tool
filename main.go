@@ -24,6 +24,7 @@ var (
 	argObject           = flag.String("object", "", "input object name")
 	argAMI              = flag.Bool("ami", false, "create ami")
 	argAMIList          = flag.Bool("amilist", false, "list ami")
+	argEIPList          = flag.Bool("eiplist", false, "eiplist ami")
 	argStop             = flag.Bool("stop", false, "Instance stop")
 	argStart            = flag.Bool("start", false, "Instance start")
 	argShow             = flag.Bool("show", false, "show ELB backendend Instances")
@@ -61,6 +62,9 @@ func main() {
 			exeFlag = false
 		} else if *argDeregister {
 			clitoolgoaws.DeregisterAMI(ec2Client, argAmiId)
+			exeFlag = false
+		} else if *argEIPList {
+			clitoolgoaws.ShowElasticIP(ec2Client)
 			exeFlag = false
 		}
 

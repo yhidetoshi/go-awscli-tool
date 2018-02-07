@@ -82,3 +82,31 @@
   - グループ一覧
     - `$ ore-aws -resource=iam-group -profile=stg`  
     
+
+
+### AWS-SDK-Goのドキュメントを読んでいてのメモ
+
+
+`type ReleaseAddressInput`
+```
+type ReleaseAddressInput struct {
+
+    // [EC2-VPC] The allocation ID. Required for EC2-VPC.
+    AllocationId *string `type:"string"`
+
+    // Checks whether you have the required permissions for the action, without
+    // actually making the request, and provides an error response. If you have
+    // the required permissions, the error response is DryRunOperation. Otherwise,
+    // it is UnauthorizedOperation.
+    DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+    // [EC2-Classic] The Elastic IP address. Required for EC2-Classic.
+    PublicIp *string `type:"string"`
+    // contains filtered or unexported fields
+}
+```
+- VPCがデフォルトになってからは
+  - `// [EC2-VPC] The allocation ID. Required for EC2-VPC.` に従う
+- Clasicの時
+  - `// [EC2-Classic] The Elastic IP address. Required for EC2-Classic` に従う
+

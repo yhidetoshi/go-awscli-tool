@@ -86,8 +86,8 @@
 
 ### AWS-SDK-Goのドキュメントを読んでいてのメモ
 
-
-`type ReleaseAddressInput`
+- APIリクエストの必須な引数について
+  - `type ReleaseAddressInput`
 ```
 type ReleaseAddressInput struct {
 

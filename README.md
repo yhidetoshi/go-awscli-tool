@@ -33,10 +33,14 @@
     - `$ ore-aws -resource=ec2 -terminate -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
   - AMI焼き
     - `$ ore-aws -resource=ec2 -ami -aminame=<AMINAME> -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
-  - AMI情報を取得
-    - `$ ore-aws -resource=ec2 -amilist -profile=stg`
+  - AMI情報の一覧を取得
+    - `$ ore-aws -resource=ec2 -amilist -profile=stg`
   - AMIの削除(解除)
     - `$ ore-aws -resource=ec2 -deregister -amiid=<ami-id> -profile=stg`
+  - ElasticIPの一覧をを取得(./bin 未反映)
+    - `$ ore-aws -resource=ec2 -deleteeip -eiplist`
+  - ElasticIPのリリース(./bin 未反映)
+    - `$ ore-aws -resource=ec2 -deleteeip -allocationid=<ALLOCATIONID>`
   - インスタンスを 複数同時に操作するときは `,` で区切り複数指定する
 - RDS
   - 一覧  
@@ -82,3 +86,31 @@
   - グループ一覧
     - `$ ore-aws -resource=iam-group -profile=stg`  
     
+
+
+### AWS-SDK-Goのドキュメントを読んでいてのメモ
+
+- APIリクエストの必須な引数について
+  - `type ReleaseAddressInput`
+```
+type ReleaseAddressInput struct {
+
+    // [EC2-VPC] The allocation ID. Required for EC2-VPC.
+    AllocationId *string `type:"string"`
+
+    // Checks whether you have the required permissions for the action, without
+    // actually making the request, and provides an error response. If you have
+    // the required permissions, the error response is DryRunOperation. Otherwise,
+    // it is UnauthorizedOperation.
+    DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+    // [EC2-Classic] The Elastic IP address. Required for EC2-Classic.
+    PublicIp *string `type:"string"`
+    // contains filtered or unexported fields
+}
+```
+- VPCがデフォルトになってからは
+  - `// [EC2-VPC] The allocation ID. Required for EC2-VPC.` に従う
+- Clasicの時
+  - `// [EC2-Classic] The Elastic IP address. Required for EC2-Classic` に従う
+

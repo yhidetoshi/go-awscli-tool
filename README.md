@@ -37,9 +37,9 @@
     - `$ ore-aws -resource=ec2 -amilist -profile=stg`
   - AMIの削除(解除)
     - `$ ore-aws -resource=ec2 -deregister -amiid=<ami-id> -profile=stg`
-  - ElasticIPの一覧をを取得(./bin 未反映)
+  - ElasticIPの一覧をを取得
     - `$ ore-aws -resource=ec2 -deleteeip -eiplist`
-  - ElasticIPのリリース(./bin 未反映)
+  - ElasticIPのリリース
     - `$ ore-aws -resource=ec2 -deleteeip -allocationid=<ALLOCATIONID>`
   - SecurityGroupの一覧を取得
     - `$ ore-aws -resource=ec2 -sglist`

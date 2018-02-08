@@ -22,6 +22,8 @@ var (
 	argAmiId            = flag.String("amiid", "", "input ami id")
 	argBucket           = flag.String("bucket", "", "input bucket name")
 	argObject           = flag.String("object", "", "input object name")
+	argAllocationId     = flag.String("allocationid", "", "input allocationid")
+	argSGId             = flag.String("sgid", "", "input securityGroup id")
 	argAMI              = flag.Bool("ami", false, "create ami")
 	argAMIList          = flag.Bool("amilist", false, "list ami")
 	argEIPList          = flag.Bool("eiplist", false, "eiplist ami")
@@ -30,9 +32,11 @@ var (
 	argShow             = flag.Bool("show", false, "show ELB backendend Instances")
 	argBilling          = flag.Bool("billing", false, "get billing info")
 	argBucketList       = flag.Bool("bucketlist", false, "get billing info")
+	argSecurityGroup    = flag.Bool("sglist", false, "get security group")
 	argBucketDelete     = flag.Bool("deletebucket", false, "delete bucket")
 	argObjectDelete     = flag.Bool("deleteobject", false, "delete object")
 	argObjectsAllDelete = flag.Bool("deleteallobject", false, "delete object")
+	argEIPDelete        = flag.Bool("deleteeip", false, "delete eip")
 	argSize             = flag.Bool("size", false, "calc bucket size")
 	argSizeAll          = flag.Bool("sizeall", false, "calc all bucket size")
 	argCheckACL         = flag.Bool("checkacl", false, "calc all bucket size")
@@ -65,6 +69,19 @@ func main() {
 			exeFlag = false
 		} else if *argEIPList {
 			clitoolgoaws.ShowElasticIP(ec2Client)
+			exeFlag = false
+		} else if *argEIPDelete {
+			clitoolgoaws.DeleteElasticIP(ec2Client, argAllocationId)
+			exeFlag = false
+		} else if *argSecurityGroup {
+			clitoolgoaws.ListSecurityGroup(ec2Client)
+			exeFlag = false
+			//--追加中　引数をポインタ配列で渡すのに工夫が必要
+		} else if *argShow {
+			sliceSGInfo := []*string{
+				argSGId,
+			}
+			clitoolgoaws.ShowSecurityGroup(ec2Client, sliceSGInfo)
 			exeFlag = false
 		}
 

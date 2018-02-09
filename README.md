@@ -24,7 +24,7 @@
 # コマンドオプション
 - EC2
   - 一覧  
-    - `$ ore-aws -resource=ec2 -profile=stg`
+    - `$ ore-aws -resource=ec2 -profile=<PROFILE>`
   - 起動
     - `$ ore-aws -resource=ec2 -start -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>`
   - 停止

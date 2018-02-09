@@ -34,7 +34,7 @@
   - インスタンスを 複数同時に操作するときは `,` で区切り複数指定する
   - AMI焼き
     - `$ ore-aws -resource=ec2 -ami -aminame=<AMINAME> -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>`
-  - AMI情報の一覧を取得
+  - AMI情報の一覧を取得
     - `$ ore-aws -resource=ec2 -amilist -profile=<PROFILE>`
   - AMIの削除(解除)
     - `$ ore-aws -resource=ec2 -deregister -amiid=<ami-id> -profile=<PROFILE>`

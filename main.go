@@ -22,7 +22,9 @@ var (
 	argAmiId            = flag.String("amiid", "", "input ami id")
 	argBucket           = flag.String("bucket", "", "input bucket name")
 	argObject           = flag.String("object", "", "input object name")
+	argASG              = flag.String("asg", "", "input autoscaling group name")
 	argAllocationId     = flag.String("allocationid", "", "input allocationid")
+	argNum              = flag.Int64("num", 0, "input num")
 	argSGId             = flag.String("sgid", "", "input securityGroup id")
 	argAMI              = flag.Bool("ami", false, "create ami")
 	argAMIList          = flag.Bool("amilist", false, "list ami")
@@ -43,6 +45,9 @@ var (
 	argsTerminate       = flag.Bool("terminate", false, "Instance terminate")
 	argRegister         = flag.Bool("register", false, "Register Instances to ELB")
 	argDeregister       = flag.Bool("deregister", false, "Deregister Instances to ELB")
+	argMax              = flag.Bool("max", false, "input maxsize num")
+	argMin              = flag.Bool("min", false, "input minsize num")
+	argDesire           = flag.Bool("desire", false, "input desiresize num")
 )
 
 func main() {
@@ -55,6 +60,7 @@ func main() {
 	kinesisClient := clitoolgoaws.AwsKinesisClient(*argProfile, *argRegion)
 	iamClient := clitoolgoaws.AwsIAMClient(*argProfile, *argRegion)
 	S3Client := clitoolgoaws.AwsS3Client(*argProfile, *argRegion)
+	asClient := clitoolgoaws.AwsASClient(*argProfile, *argRegion)
 
 	// EC2のコマンド
 	var ec2Instances []*string
@@ -76,7 +82,6 @@ func main() {
 		} else if *argSecurityGroup {
 			clitoolgoaws.ListSecurityGroup(ec2Client)
 			exeFlag = false
-			//--追加中　引数をポインタ配列で渡すのに工夫が必要
 		} else if *argShow {
 			sliceSGInfo := []*string{
 				argSGId,
@@ -105,6 +110,22 @@ func main() {
 		}
 	}
 
+	//AutoScalingのコマンド
+	if *argResource == "as" {
+		if *argASG != "" {
+			// -update
+			if *argMax {
+				clitoolgoaws.ChangeMaxSizeInstances(asClient, argASG, argNum)
+			} else if *argMin {
+				clitoolgoaws.ChangeMinSizeInstances(asClient, argASG, argNum)
+			} else if *argDesire {
+				clitoolgoaws.ChangeDesireSizeInstances(asClient, argASG, argNum)
+			}
+		} else {
+			clitoolgoaws.ShowAutoScaling(asClient)
+		}
+	}
+
 	// RDSのコマンド
 	var rdsInstances *string
 	if *argResource == "rds" {
@@ -121,7 +142,6 @@ func main() {
 		} else {
 			clitoolgoaws.ListRDSInstances(rdsClient, nil)
 		}
-
 	}
 
 	// S3のコマンド

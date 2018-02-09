@@ -22,7 +22,7 @@
 `$ore-aws -resource=ec2 -profile=stg`
 
 # コマンドオプション
-#### EC2
+### EC2
 ```
   ■ 一覧  
     > $ ore-aws -resource=ec2 -profile=<PROFILE>
@@ -69,51 +69,71 @@
   ■ AutoScalingグループのインスタンスの`希望`数を変更
     > $ ore-aws -resource=as -asg=<GROUP名> -desire -num=<NUM> -profile=<PROFILE>
 ```
+### RDS
+```
+  ■ 一覧  
+    > $ ore-aws -resource=rds -profile=<PROFILE>
+  
+  ■ 起動
+    > $ ore-aws -resource=rds -start -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>
+  
+  ■ 停止
+    > $ ore-aws -resource=rds -stop -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>  
+```
+### ELB
+```
+  ■ 一覧
+    > $ ore-aws -resource=elb -profile=<PROFILE>
+  
+  ■ ELBのバックエンドインスタンスを取得
+    > $ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=<PROFILE>
+  
+  ■ ELBにバックエンドインスタンスを登録
+    > $ ore-aws -resource=elb -register -elbname=<ELBNAME> -instances=<INSTANCEID> -profile=<PROFILE>
+  
+  ■ ELBにバックエンドインスタンスを解除
+    > $ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=<PROFILE>
+```
+### S3
+```
+  ■ バケット一覧
+    > $ ore-aws -resource=s3 -profile=<PROFILE>
+  
+  ■ バケットのオブジェクト一覧を取得
+    > $ ore-aws -resource=s3 -show -bucket=<BUCKETNAME> -profile=<PROFILE>
+  
+  ■ バケットのサイズ取得
+    > $ ore-aws -resource=s3 -size -bucket=<BUCKETNAME> -profile=<PROFILE> 
+  
+  ■ バケットの削除(条件: bucket　is empty) ./bin配下は未反映
+    > $ ore-aws -resource=s3 -deletebucket -bucket=<BUCKETNAME> -profile=<PROFILE>
+  
+  ■ オブジェクト削除
+    > $ ore-aws -resource=s3 -deleteobject -bucket=<BUCKETNAME> -object=<FILENAME>
+  
+  ■ バケット内のオブジェクトを全て削除
+    > $ ore-aws -resource=s3 -deleteallobject -bucket=<BUCKETNAME> -profile=<PROFILE>
 
-- RDS
-  - 一覧  
-    - `$ ore-aws -resource=rds -profile=<PROFILE>`
-  - 起動
-    - `$ ore-aws -resource=rds -start -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>`
-  - 停止
-    - `$ ore-aws -resource=rds -stop -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>`  
-- ELB
-  - 一覧
-    - `$ ore-aws -resource=elb -profile=<PROFILE>`
-  - ELBのバックエンドインスタンスを取得
-    - `$ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=<PROFILE>`
-  - ELBにバックエンドインスタンスを登録
-    - `$ ore-aws -resource=elb -register -elbname=<ELBNAME> -instances=<INSTANCEID> -profile=<PROFILE>`
-  - ELBにバックエンドインスタンスを解除
-    - `$ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=<PROFILE>`
-- S3
-  - バケット一覧
-    - `$ ore-aws -resource=s3 -profile=<PROFILE>`
-  - バケットのオブジェクト一覧を取得
-    - `ore-aws -resource=s3 -show -bucket=<BUCKETNAME> -profile=<PROFILE>`
-  - バケットのサイズ取得
-    - `ore-aws -resource=s3 -size -bucket=<BUCKETNAME> -profile=<PROFILE>` 
-  - バケットの削除(条件: bucket　is empty) ./bin配下は未反映
-    - `ore-aws -resource=s3 -deletebucket -bucket=<BUCKETNAME> -profile=<PROFILE>`
-  - オブジェクト削除
-    - `ore-aws -resource=s3 -deleteobject -bucket=<BUCKETNAME> -object=<FILENAME>`
-  - バケット内のオブジェクトを全て削除
-    - `ore-aws -resource=s3 -deleteallobject -bucket=<BUCKETNAME> -profile=<PROFILE>`
-  - Tokyoリージョン内の全バケットのACLがPublic or Privateかを取得
-    - `ore-aws -resource=s3 -checkacl -profile=<PROFILE>`
-  - Tokyoリージョン内の全バケットサイズを取得
-    - `ore-aws -resource=s3 -sizeall -profile=<PROFILE>`
-- Cloudwatch
-  - Billing
-    - `$ ore-aws -resource=cloudwatch -billing -profile=<PROFILE>`
-  - Alarm
-    - `$ ore-aws -resource=cloudwatch -profile=<PROFILE>`
-- IAM
-  - ユーザ一覧
-    - `$ ore-aws -resource=iam-user -profile=<PROFILE>`
-  - グループ一覧
-    - `$ ore-aws -resource=iam-group -profile=<PROFILE>`  
-    
+  ■ Tokyoリージョン内の全バケットのACLがPublic or Privateかを取得
+    > $ ore-aws -resource=s3 -checkacl -profile=<PROFILE>
+
+  ■ Tokyoリージョン内の全バケットサイズを取得
+    > $ ore-aws -resource=s3 -sizeall -profile=<PROFILE>
+```
+### Cloudwatch
+```
+  ■ Billing
+    > $ ore-aws -resource=cloudwatch -billing -profile=<PROFILE>
+  ■ Alarm
+    > $ ore-aws -resource=cloudwatch -profile=<PROFILE>
+```
+### IAM
+```
+  ■ ユーザ一覧
+    > $ ore-aws -resource=iam-user -profile=<PROFILE>
+  ■ グループ一覧
+    > $ ore-aws -resource=iam-group -profile=<PROFILE>
+``` 
 
 
 ### AWS-SDK-Goのドキュメントを読んでいてのメモ

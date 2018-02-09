@@ -69,6 +69,7 @@
   ■ AutoScalingグループのインスタンスの`希望`数を変更
     > $ ore-aws -resource=as -asg=<GROUP名> -desire -num=<NUM> -profile=<PROFILE>
 ```
+
 ### RDS
 ```
   ■ 一覧  
@@ -80,6 +81,7 @@
   ■ 停止
     > $ ore-aws -resource=rds -stop -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>  
 ```
+
 ### ELB
 ```
   ■ 一覧
@@ -94,6 +96,7 @@
   ■ ELBにバックエンドインスタンスを解除
     > $ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=<PROFILE>
 ```
+
 ### S3
 ```
   ■ バケット一覧
@@ -120,6 +123,7 @@
   ■ Tokyoリージョン内の全バケットサイズを取得
     > $ ore-aws -resource=s3 -sizeall -profile=<PROFILE>
 ```
+
 ### Cloudwatch
 ```
   ■ Billing
@@ -127,19 +131,20 @@
   ■ Alarm
     > $ ore-aws -resource=cloudwatch -profile=<PROFILE>
 ```
+
 ### IAM
 ```
   ■ ユーザ一覧
     > $ ore-aws -resource=iam-user -profile=<PROFILE>
   ■ グループ一覧
     > $ ore-aws -resource=iam-group -profile=<PROFILE>
-``` 
-
+```
 
 ### AWS-SDK-Goのドキュメントを読んでいてのメモ
 
 - APIリクエストの必須な引数について
   - `type ReleaseAddressInput`
+
 ```
 type ReleaseAddressInput struct {
 
@@ -157,8 +162,8 @@ type ReleaseAddressInput struct {
     // contains filtered or unexported fields
 }
 ```
+
 - VPCがデフォルトになってからは
   - `// [EC2-VPC] The allocation ID. Required for EC2-VPC.` に従う
 - Clasicの時
   - `// [EC2-Classic] The Elastic IP address. Required for EC2-Classic` に従う
-

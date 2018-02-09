@@ -22,38 +22,53 @@
 `$ore-aws -resource=ec2 -profile=stg`
 
 # コマンドオプション
-- EC2
-  - 一覧  
-    - `$ ore-aws -resource=ec2 -profile=<PROFILE>`
-  - 起動
-    - `$ ore-aws -resource=ec2 -start -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>`
-  - 停止
-    - `$ ore-aws -resource=ec2 -stop -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>`
-  - 削除
-    - `$ ore-aws -resource=ec2 -terminate -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>`
-  - インスタンスを 複数同時に操作するときは `,` で区切り複数指定する
-  - AMI焼き
-    - `$ ore-aws -resource=ec2 -ami -aminame=<AMINAME> -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>`
-  - AMI情報の一覧を取得
-    - `$ ore-aws -resource=ec2 -amilist -profile=<PROFILE>`
-  - AMIの削除(解除)
-    - `$ ore-aws -resource=ec2 -deregister -amiid=<ami-id> -profile=<PROFILE>`
-  - ElasticIPの一覧をを取得
-    - `$ ore-aws -resource=ec2 -deleteeip -eiplist -profile=<PROFILE>`
-  - ElasticIPのリリース
-    - `$ ore-aws -resource=ec2 -deleteeip -allocationid=<ALLOCATIONID> -profile=<PROFILE>`
-  - SecurityGroupの一覧を取得
-    - `$ ore-aws -resource=ec2 -sglist -profile=<PROFILE>`
-  - SecurityGroupのルール確認(output:json)
-    - `$ ore-aws -resource=ec2 -show -sgid=<GROUPID> -profile=<PROFILE>`
-  - AutoScalingグループ一覧の情報を出力(コンソール画面相当)
-    - `$ ore-aws -resource=as -profile=<PROFILE>`
-  - AutoScalingグループのインスタンスの`最大`数を変更
-    - `$ ore-aws -resource=as -asg=<GROUP名> -max -num=<NUM> -profile=<PROFILE>`
-  - AutoScalingグループのインスタンスの`最小`数を変更
-    - `$ ore-aws -resource=as -asg=<GROUP名> -min -num=<NUM> -profile=<PROFILE>`
-  - AutoScalingグループのインスタンスの`希望`数を変更
-    - `$ ore-aws -resource=as -asg=<GROUP名> -desire -num=<NUM> -profile=<PROFILE>`
+#### EC2
+```
+  ■ 一覧  
+    > $ ore-aws -resource=ec2 -profile=<PROFILE>
+  
+  ■ 起動
+    > $ ore-aws -resource=ec2 -start -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>
+  ■ 停止
+    > $ ore-aws -resource=ec2 -stop -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>
+  
+  ■ 削除
+    > $ ore-aws -resource=ec2 -terminate -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>
+  ※ インスタンスを 複数同時に操作するときは `,` で区切り複数指定する
+  
+  ■ AMI焼き
+    > $ ore-aws -resource=ec2 -ami -aminame=<AMINAME> -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>
+  
+  ■ AMI情報の一覧を取得
+    > $ ore-aws -resource=ec2 -amilist -profile=<PROFILE>
+  
+  ■ AMIの削除(解除)
+    > $ ore-aws -resource=ec2 -deregister -amiid=<ami-id> -profile=<PROFILE>
+  
+  ■ ElasticIPの一覧をを取得
+    > $ ore-aws -resource=ec2 -deleteeip -eiplist -profile=<PROFILE>
+  
+  ■ ElasticIPのリリース
+    > $ ore-aws -resource=ec2 -deleteeip -allocationid=<ALLOCATIONID> -profile=<PROFILE>
+  
+  ■ SecurityGroupの一覧を取得
+    > $ ore-aws -resource=ec2 -sglist -profile=<PROFILE>
+  
+  ■ SecurityGroupのルール確認(output:json)
+    > $ ore-aws -resource=ec2 -show -sgid=<GROUPID> -profile=<PROFILE>
+  
+  ■ AutoScalingグループ一覧の情報を出力(コンソール画面相当)
+    > $ ore-aws -resource=as -profile=<PROFILE>
+  
+  ■ AutoScalingグループのインスタンスの`最大`数を変更
+    > $ ore-aws -resource=as -asg=<GROUP名> -max -num=<NUM> -profile=<PROFILE>
+  
+  ■ AutoScalingグループのインスタンスの`最小`数を変更
+    > $ ore-aws -resource=as -asg=<GROUP名> -min -num=<NUM> -profile=<PROFILE>
+  
+  ■ AutoScalingグループのインスタンスの`希望`数を変更
+    > $ ore-aws -resource=as -asg=<GROUP名> -desire -num=<NUM> -profile=<PROFILE>
+```
 
 - RDS
   - 一覧  

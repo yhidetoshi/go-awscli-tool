@@ -37,10 +37,14 @@
     - `$ ore-aws -resource=ec2 -amilist -profile=stg`
   - AMIの削除(解除)
     - `$ ore-aws -resource=ec2 -deregister -amiid=<ami-id> -profile=stg`
-  - ElasticIPの一覧をを取得(./bin 未反映)
+  - ElasticIPの一覧をを取得
     - `$ ore-aws -resource=ec2 -deleteeip -eiplist`
-  - ElasticIPのリリース(./bin 未反映)
+  - ElasticIPのリリース
     - `$ ore-aws -resource=ec2 -deleteeip -allocationid=<ALLOCATIONID>`
+  - SecurityGroupの一覧を取得
+    - `$ ore-aws -resource=ec2 -sglist`
+  - SecurityGroupのルール確認(output:json)
+    - `$ ore-aws -resource=ec2 -show -sgid=<GROUPID>`
   - インスタンスを 複数同時に操作するときは `,` で区切り複数指定する
 - RDS
   - 一覧  

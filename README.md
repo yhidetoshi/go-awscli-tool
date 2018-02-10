@@ -22,80 +22,129 @@
 `$ore-aws -resource=ec2 -profile=stg`
 
 # コマンドオプション
-- EC2
-  - 一覧  
-    - `$ ore-aws -resource=ec2 -profile=stg`
-  - 起動
-    - `$ ore-aws -resource=ec2 -start -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
-  - 停止
-    - `$ ore-aws -resource=ec2 -stop -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
-  - 削除
-    - `$ ore-aws -resource=ec2 -terminate -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
-  - AMI焼き
-    - `$ ore-aws -resource=ec2 -ami -aminame=<AMINAME> -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
-  - AMI情報の一覧を取得
-    - `$ ore-aws -resource=ec2 -amilist -profile=stg`
-  - AMIの削除(解除)
-    - `$ ore-aws -resource=ec2 -deregister -amiid=<ami-id> -profile=stg`
-  - ElasticIPの一覧をを取得
-    - `$ ore-aws -resource=ec2 -deleteeip -eiplist`
-  - ElasticIPのリリース
-    - `$ ore-aws -resource=ec2 -deleteeip -allocationid=<ALLOCATIONID>`
-  - SecurityGroupの一覧を取得
-    - `$ ore-aws -resource=ec2 -sglist`
-  - SecurityGroupのルール確認(output:json)
-    - `$ ore-aws -resource=ec2 -show -sgid=<GROUPID>`
-  - インスタンスを 複数同時に操作するときは `,` で区切り複数指定する
-- RDS
-  - 一覧  
-    - `$ ore-aws -resource=rds -profile=stg`
-  - 起動
-    - `$ ore-aws -resource=rds -start -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`
-  - 停止
-    - `$ ore-aws -resource=rds -stop -instances=<INSTANCENAME> or <INSTANCEID> -profile=stg`  
-- ELB
-  - 一覧
-    - `$ ore-aws -resource=elb -profile=stg`
-  - ELBのバックエンドインスタンスを取得
-    - `$ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=stg`
-  - ELBにバックエンドインスタンスを登録
-    - `$ ore-aws -resource=elb -register -elbname=<ELBNAME> -instances=<INSTANCEID> -profile=stg`
-  - ELBにバックエンドインスタンスを解除
-    - `$ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=stg`
-- S3
-  - バケット一覧
-    - `$ ore-aws -resource=s3 -profile=stg`
-  - バケットのオブジェクト一覧を取得
-    - `ore-aws -resource=s3 -show -bucket=<BUCKETNAME> -profile=stg`
-  - バケットのサイズ取得
-    - `ore-aws -resource=s3 -size -bucket=<BUCKETNAME> -profile=stg` 
-  - バケットの削除(条件: bucket　is empty) ./bin配下は未反映
-    - `ore-aws -resource=s3 -deletebucket -bucket=<BUCKETNAME> -profile=stg`
-  - オブジェクト削除
-    - `ore-aws -resource=s3 -deleteobject -bucket=<BUCKETNAME> -object=<FILENAME>`
-  - バケット内のオブジェクトを全て削除
-    - `ore-aws -resource=s3 -deleteallobject -bucket=<BUCKETNAME>`
-  - Tokyoリージョン内の全バケットのACLがPublic or Privateかを取得
-    - `ore-aws -resource=s3 -checkacl -profile=stg`
-  - Tokyoリージョン内の全バケットサイズを取得
-    - `ore-aws -resource=s3 -sizeall -profile=stg`
-- Cloudwatch
-  - Billing
-    - `$ ore-aws -resource=cloudwatch -billing`
-  - Alarm
-    - `$ ore-aws -resource=cloudwatch`
-- IAM
-  - ユーザ一覧
-    - `$ ore-aws -resource=iam-user -profile=stg`
-  - グループ一覧
-    - `$ ore-aws -resource=iam-group -profile=stg`  
-    
+### EC2
+```
+  ■ 一覧  
+    > $ ore-aws -resource=ec2 -profile=<PROFILE>
+  
+  ■ 起動
+    > $ ore-aws -resource=ec2 -start -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>
+  ■ 停止
+    > $ ore-aws -resource=ec2 -stop -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>
+  
+  ■ 削除
+    > $ ore-aws -resource=ec2 -terminate -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>
+  ※ インスタンスを 複数同時に操作するときは `,` で区切り複数指定する
+  
+  ■ AMI焼き
+    > $ ore-aws -resource=ec2 -ami -aminame=<AMINAME> -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>
+  
+  ■ AMI情報の一覧を取得
+    > $ ore-aws -resource=ec2 -amilist -profile=<PROFILE>
+  
+  ■ AMIの削除(解除)
+    > $ ore-aws -resource=ec2 -deregister -amiid=<ami-id> -profile=<PROFILE>
+  
+  ■ ElasticIPの一覧をを取得
+    > $ ore-aws -resource=ec2 -deleteeip -eiplist -profile=<PROFILE>
+  
+  ■ ElasticIPのリリース
+    > $ ore-aws -resource=ec2 -deleteeip -allocationid=<ALLOCATIONID> -profile=<PROFILE>
+  
+  ■ SecurityGroupの一覧を取得
+    > $ ore-aws -resource=ec2 -sglist -profile=<PROFILE>
+  
+  ■ SecurityGroupのルール確認(output:json)
+    > $ ore-aws -resource=ec2 -show -sgid=<GROUPID> -profile=<PROFILE>
+  
+  ■ AutoScalingグループ一覧の情報を出力(コンソール画面相当)
+    > $ ore-aws -resource=as -profile=<PROFILE>
+  
+  ■ AutoScalingグループのインスタンスの`最大`数を変更
+    > $ ore-aws -resource=as -asg=<GROUP名> -max -num=<NUM> -profile=<PROFILE>
+  
+  ■ AutoScalingグループのインスタンスの`最小`数を変更
+    > $ ore-aws -resource=as -asg=<GROUP名> -min -num=<NUM> -profile=<PROFILE>
+  
+  ■ AutoScalingグループのインスタンスの`希望`数を変更
+    > $ ore-aws -resource=as -asg=<GROUP名> -desire -num=<NUM> -profile=<PROFILE>
+```
 
+### RDS
+```
+  ■ 一覧  
+    > $ ore-aws -resource=rds -profile=<PROFILE>
+  
+  ■ 起動
+    > $ ore-aws -resource=rds -start -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>
+  
+  ■ 停止
+    > $ ore-aws -resource=rds -stop -instances=<INSTANCENAME> or <INSTANCEID> -profile=<PROFILE>  
+```
+
+### ELB
+```
+  ■ 一覧
+    > $ ore-aws -resource=elb -profile=<PROFILE>
+  
+  ■ ELBのバックエンドインスタンスを取得
+    > $ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=<PROFILE>
+  
+  ■ ELBにバックエンドインスタンスを登録
+    > $ ore-aws -resource=elb -register -elbname=<ELBNAME> -instances=<INSTANCEID> -profile=<PROFILE>
+  
+  ■ ELBにバックエンドインスタンスを解除
+    > $ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=<PROFILE>
+```
+
+### S3
+```
+  ■ バケット一覧
+    > $ ore-aws -resource=s3 -profile=<PROFILE>
+  
+  ■ バケットのオブジェクト一覧を取得
+    > $ ore-aws -resource=s3 -show -bucket=<BUCKETNAME> -profile=<PROFILE>
+  
+  ■ バケットのサイズ取得
+    > $ ore-aws -resource=s3 -size -bucket=<BUCKETNAME> -profile=<PROFILE> 
+  
+  ■ バケットの削除(条件: bucket　is empty) ./bin配下は未反映
+    > $ ore-aws -resource=s3 -deletebucket -bucket=<BUCKETNAME> -profile=<PROFILE>
+  
+  ■ オブジェクト削除
+    > $ ore-aws -resource=s3 -deleteobject -bucket=<BUCKETNAME> -object=<FILENAME>
+  
+  ■ バケット内のオブジェクトを全て削除
+    > $ ore-aws -resource=s3 -deleteallobject -bucket=<BUCKETNAME> -profile=<PROFILE>
+
+  ■ Tokyoリージョン内の全バケットのACLがPublic or Privateかを取得
+    > $ ore-aws -resource=s3 -checkacl -profile=<PROFILE>
+
+  ■ Tokyoリージョン内の全バケットサイズを取得
+    > $ ore-aws -resource=s3 -sizeall -profile=<PROFILE>
+```
+
+### Cloudwatch
+```
+  ■ Billing
+    > $ ore-aws -resource=cloudwatch -billing -profile=<PROFILE>
+  ■ Alarm
+    > $ ore-aws -resource=cloudwatch -profile=<PROFILE>
+```
+
+### IAM
+```
+  ■ ユーザ一覧
+    > $ ore-aws -resource=iam-user -profile=<PROFILE>
+  ■ グループ一覧
+    > $ ore-aws -resource=iam-group -profile=<PROFILE>
+```
 
 ### AWS-SDK-Goのドキュメントを読んでいてのメモ
 
 - APIリクエストの必須な引数について
   - `type ReleaseAddressInput`
+
 ```
 type ReleaseAddressInput struct {
 
@@ -113,8 +162,8 @@ type ReleaseAddressInput struct {
     // contains filtered or unexported fields
 }
 ```
+
 - VPCがデフォルトになってからは
   - `// [EC2-VPC] The allocation ID. Required for EC2-VPC.` に従う
 - Clasicの時
   - `// [EC2-Classic] The Elastic IP address. Required for EC2-Classic` に従う
-

@@ -94,7 +94,7 @@
     > $ ore-aws -resource=elb -register -elbname=<ELBNAME> -instances=<INSTANCEID> -profile=<PROFILE>
   
   ■ ELBにバックエンドインスタンスを解除
-    > $ ore-aws -resource=elb -show -elbname=<ELBNAME> -profile=<PROFILE>
+    > $ ore-aws -resource=elb -deregister -elbname=<ELBNAME> -instances=<INSTANCEID> -profile=<PROFILE>
 ```
 
 ### S3

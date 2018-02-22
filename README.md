@@ -141,27 +141,6 @@
 ```
 
 ### 1リージョンの全バケットの合計サイズを計算する処理をGoroutineで処理するように変更
-■ マルチスレッド
-```
-➜  aws-cli-go git:(master) ✗ ore-aws -resource=s3 -sizeall -profile=infra-stg
-+-----------------+
-| TOTAL SIZE(KIB) |
-+-----------------+
-|      7897247147 |
-+-----------------+
-1.711132秒
-```
-
-■ シングルスレッド
-```
-➜ aws-cli-go git:(master) ✗ ore-aws -resource=s3 -sizeall -profile=infra-stg
-+-----------------+
-| TOTAL SIZE(KIB) |
-+-----------------+
-|      7897247147 |
-+-----------------+
-3.277896秒
-```
 
 - 一部抜粋
 ```
@@ -175,6 +154,27 @@ wg.Add(len(allBuckets))
 	}
 ```
 
+■ マルチスレッド実行
+```
+➜  aws-cli-go git:(master) ✗ ore-aws -resource=s3 -sizeall -profile=infra-stg
++-----------------+
+| TOTAL SIZE(KIB) |
++-----------------+
+|      7897247147 |
++-----------------+
+1.711132秒
+```
+
+■ シングルスレッド実行
+```
+➜ aws-cli-go git:(master) ✗ ore-aws -resource=s3 -sizeall -profile=infra-stg
++-----------------+
+| TOTAL SIZE(KIB) |
++-----------------+
+|      7897247147 |
++-----------------+
+3.277896秒
+```
 
 ### AWS-SDK-Goのドキュメントを読んでいてのメモ
 

@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/yhidetoshi/clitoolgoaws"
 )
@@ -148,8 +149,12 @@ func main() {
 	exeFlagS3 := true
 	if *argResource == "s3" {
 		if *argSizeAll {
-			clitoolgoaws.TotalGetBucketSize(S3Client)
+			start := time.Now()                       //  時間計測
+			clitoolgoaws.TotalGetBucketSize(S3Client) // バケットの数だけスレッドを設けて計算する
+			//clitoolgoaws.TotalGetBucketSizeSingle(S3Client) //シングルスレッドで計算する
 			exeFlagS3 = false
+			end := time.Now() // 時間計測
+			fmt.Printf("%f秒\n", (end.Sub(start)).Seconds())
 		} else if *argCheckACL {
 			// バケットのACL情報のレスポンスを確認するため
 			clitoolgoaws.ShowPublicBucket(S3Client)

@@ -140,6 +140,42 @@
     > $ ore-aws -resource=iam-group -profile=<PROFILE>
 ```
 
+### 1リージョンの全バケットの合計サイズを計算する処理をGoroutineで処理するように変更
+■ マルチスレッド
+```
+➜  aws-cli-go git:(master) ✗ ore-aws -resource=s3 -sizeall -profile=infra-stg
++-----------------+
+| TOTAL SIZE(KIB) |
++-----------------+
+|      7897247147 |
++-----------------+
+1.711132秒
+```
+
+■ シングルスレッド
+```
+➜ aws-cli-go git:(master) ✗ ore-aws -resource=s3 -sizeall -profile=infra-stg
++-----------------+
+| TOTAL SIZE(KIB) |
++-----------------+
+|      7897247147 |
++-----------------+
+3.277896秒
+```
+
+- 一部抜粋
+```
+wg := new(sync.WaitGroup)
+ch := make(chan int64, len(allBuckets))
+
+wg.Add(len(allBuckets))
+	for i := 0; i < len(allBuckets); i++ {
+		buffBucket = &allBuckets[i]
+		go CalcThreadBucketSize(S3Client, buffBucket, ch, wg)
+	}
+```
+
+
 ### AWS-SDK-Goのドキュメントを読んでいてのメモ
 
 - APIリクエストの必須な引数について

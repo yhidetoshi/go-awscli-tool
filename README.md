@@ -12,16 +12,12 @@
 
 - macOSとLinux(amd64)とWindows用にクロスコンパイルしたバイナリはこちら
   - https://github.com/yhidetoshi/go-awscli-tool/tree/master/bin
-  
-- 参考
-  - `GoDoc`: https://godoc.org/github.com/aws/aws-sdk-go/aws
-  - `aws-sdk-go APIリファレンス`: https://docs.aws.amazon.com/sdk-for-go/api/
-  
+    
   
  (ex) 
 `$ore-aws -resource=ec2 -profile=stg`
 
-# コマンドオプション
+# 使い方(コマンドオプション)
 ### EC2
 ```
   ■ 一覧  
@@ -203,3 +199,8 @@ type ReleaseAddressInput struct {
   - `// [EC2-VPC] The allocation ID. Required for EC2-VPC.` に従う
 - Clasicの時
   - `// [EC2-Classic] The Elastic IP address. Required for EC2-Classic` に従う
+  
+- 参考
+  - `GoDoc`: https://godoc.org/github.com/aws/aws-sdk-go/aws
+  - `aws-sdk-go APIリファレンス`: https://docs.aws.amazon.com/sdk-for-go/api/
+

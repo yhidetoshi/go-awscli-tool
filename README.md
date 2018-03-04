@@ -104,7 +104,7 @@
   ■ バケットのサイズ取得
     > $ ore-aws -resource=s3 -size -bucket=<BUCKETNAME> -profile=<PROFILE> 
   
-  ■ バケットの削除(条件: bucket　is empty) ./bin配下は未反映
+  ■ バケットの削除(条件: bucket　is empty) 
     > $ ore-aws -resource=s3 -deletebucket -bucket=<BUCKETNAME> -profile=<PROFILE>
   
   ■ オブジェクト削除

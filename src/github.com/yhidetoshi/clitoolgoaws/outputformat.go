@@ -45,7 +45,7 @@ func OutputFormat(data [][]string, resourceType string) {
 	case AS:
 		table.SetHeader([]string{"Group_Name", "LaunchConfig_Name", "Instance", "desire", "Min", "Max", "Cooldown", "healthcheck_time", "healthcheck_type"})
 	case ROUTE53:
-		table.SetHeader([]string{"name", "id"})
+		table.SetHeader([]string{"name", "id", "RecordSetCount", "PrivateZone"})
 	}
 
 	for _, value := range data {

@@ -62,6 +62,7 @@ func main() {
 	iamClient := clitoolgoaws.AwsIAMClient(*argProfile, *argRegion)
 	S3Client := clitoolgoaws.AwsS3Client(*argProfile, *argRegion)
 	asClient := clitoolgoaws.AwsASClient(*argProfile, *argRegion)
+	route53Client := clitoolgoaws.AwsRoute53Client(*argProfile, *argRegion)
 
 	// EC2のコマンド
 	var ec2Instances []*string
@@ -125,6 +126,11 @@ func main() {
 		} else {
 			clitoolgoaws.ShowAutoScaling(asClient)
 		}
+	}
+
+	// route53のコマンド
+	if *argResource == "route53" {
+		clitoolgoaws.ShowHostedZone(route53Client)
 	}
 
 	// RDSのコマンド

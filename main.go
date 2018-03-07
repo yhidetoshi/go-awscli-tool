@@ -27,6 +27,7 @@ var (
 	argAllocationId     = flag.String("allocationid", "", "input allocationid")
 	argNum              = flag.Int64("num", 0, "input num")
 	argSGId             = flag.String("sgid", "", "input securityGroup id")
+	argZoneId           = flag.String("zoneid", "", "input zone id")
 	argAMI              = flag.Bool("ami", false, "create ami")
 	argAMIList          = flag.Bool("amilist", false, "list ami")
 	argEIPList          = flag.Bool("eiplist", false, "eiplist ami")
@@ -130,7 +131,11 @@ func main() {
 
 	// route53のコマンド
 	if *argResource == "route53" {
-		clitoolgoaws.ShowHostedZone(route53Client)
+		if *argShow {
+			clitoolgoaws.ShowListResourceRecordSets(route53Client, argZoneId)
+		} else {
+			clitoolgoaws.ShowHostedZone(route53Client)
+		}
 	}
 
 	// RDSのコマンド

@@ -125,7 +125,7 @@
   ■ Zone一覧
     > $ ore-aws -resource=route53 -profile=<PROFILE>
   ■ Zoneid指定のレコード情報取得
-    > $ ore-aws -resource=route53 -show -zoneid=<ZONEID> -billing -profile=<PROFILE>
+    > $ ore-aws -resource=route53 -show -zoneid=<ZONEID> -profile=<PROFILE>
 ```
 
 ### Cloudwatch

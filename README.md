@@ -123,7 +123,7 @@
 ### Route53
 ```
   ■ Zone一覧(./bin未反映)
-    > $ ore-aws -resource=cloudwatch -billing -profile=<PROFILE>
+    > $ ore-aws -resource=route53 -profile=<PROFILE>
   ■ Zoneid指定のレコード情報取得(./bin未反映)
     > $ ore-aws -resource=route53 -show -zoneid=<ZONEID> -billing -profile=<PROFILE>
 ```

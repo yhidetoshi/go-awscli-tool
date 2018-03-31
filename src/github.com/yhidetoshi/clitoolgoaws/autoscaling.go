@@ -30,6 +30,24 @@ func AwsASClient(profile string, region string) *autoscaling.AutoScaling {
 	return asClient
 }
 
+// LaunchConfigを作成
+func CreateLaunchConfig(asClient *autoscaling.AutoScaling, launchConfigName *string, iamProfile *string, imageId *string, instanceType *string, keyName *string, securityGroups []*string) {
+	params := &autoscaling.CreateLaunchConfigurationInput{
+		IamInstanceProfile:      iamProfile,
+		ImageId:                 imageId,
+		InstanceType:            instanceType,
+		KeyName:                 keyName,
+		LaunchConfigurationName: launchConfigName,
+		SecurityGroups:          securityGroups,
+	}
+	res, err := asClient.CreateLaunchConfiguration(params)
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
+	fmt.Println(res)
+}
+
 // ASGの一覧取得
 func ShowAutoScaling(asClient *autoscaling.AutoScaling) {
 	allAutoScalingInfo := [][]string{}

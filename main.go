@@ -24,11 +24,18 @@ var (
 	argBucket           = flag.String("bucket", "", "input bucket name")
 	argObject           = flag.String("object", "", "input object name")
 	argASG              = flag.String("asg", "", "input autoscaling group name")
+	argLaunchConfigName = flag.String("lcname", "", "input launchconfig name")
+	argInstanceProfile  = flag.String("instanceprofile", "", "input instance proifle")
+	argImageId          = flag.String("imageid", "", "input image id")
+	argKeyName          = flag.String("keyname", "", "input key name")
+	argInstanceType     = flag.String("instancetype", "", "input instance type")
+	argSecurityGroupId  = flag.String("sgids", "", "input securitygroup id")
 	argAllocationId     = flag.String("allocationid", "", "input allocationid")
 	argNum              = flag.Int64("num", 0, "input num")
 	argSGId             = flag.String("sgid", "", "input securityGroup id")
 	argZoneId           = flag.String("zoneid", "", "input zone id")
 	argAMI              = flag.Bool("ami", false, "create ami")
+	argCreate           = flag.Bool("create", false, "create launch config")
 	argAMIList          = flag.Bool("amilist", false, "list ami")
 	argEIPList          = flag.Bool("eiplist", false, "eiplist ami")
 	argStop             = flag.Bool("stop", false, "Instance stop")
@@ -110,6 +117,15 @@ func main() {
 			}
 		} else if exeFlag {
 			clitoolgoaws.ListEC2Instances(ec2Client, nil)
+		}
+	}
+	// LaunchConfigのコマンド (ore-aws -resource=lc -create -lcname= instanceprofile= imageid=)
+	if *argResource == "lc" {
+		if *argLaunchConfigName != "" {
+			sliceSGId := []*string{
+				argSecurityGroupId,
+			}
+			clitoolgoaws.CreateLaunchConfig(asClient, argLaunchConfigName, argInstanceProfile, argImageId, argInstanceType, argKeyName, sliceSGId)
 		}
 	}
 

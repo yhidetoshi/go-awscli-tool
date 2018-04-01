@@ -27,6 +27,7 @@ var (
 	argLaunchConfigName = flag.String("lcname", "", "input launchconfig name")
 	argInstanceProfile  = flag.String("instanceprofile", "", "input instance proifle")
 	argImageId          = flag.String("imageid", "", "input image id")
+	argImageName        = flag.String("imagename", "", "input image name")
 	argKeyName          = flag.String("keyname", "", "input key name")
 	argInstanceType     = flag.String("instancetype", "", "input instance type")
 	argSecurityGroupId  = flag.String("sgids", "", "input securitygroup id")
@@ -47,6 +48,7 @@ var (
 	argBucketDelete     = flag.Bool("deletebucket", false, "delete bucket")
 	argObjectDelete     = flag.Bool("deleteobject", false, "delete object")
 	argObjectsAllDelete = flag.Bool("deleteallobject", false, "delete object")
+	argAMItest          = flag.Bool("amitest", false, "delete object")
 	argEIPDelete        = flag.Bool("deleteeip", false, "delete eip")
 	argSize             = flag.Bool("size", false, "calc bucket size")
 	argSizeAll          = flag.Bool("sizeall", false, "calc all bucket size")
@@ -93,6 +95,9 @@ func main() {
 		} else if *argSecurityGroup {
 			clitoolgoaws.ListSecurityGroup(ec2Client)
 			exeFlag = false
+		} else if *argAMItest {
+			clitoolgoaws.GetAmiId(ec2Client, *argImageName)
+			exeFlag = false
 		} else if *argShow {
 			sliceSGInfo := []*string{
 				argSGId,
@@ -120,12 +125,13 @@ func main() {
 			clitoolgoaws.ListEC2Instances(ec2Client, nil)
 		}
 	}
-	// LaunchConfigのコマンド (ore-aws -resource=lc -create -lcname= instanceprofile= imageid=)
+	// LaunchConfigのコマンド
 	if *argResource == "lc" {
 		if *argLaunchConfigName != "" {
 			sliceSGId := []*string{
 				argSecurityGroupId,
 			}
+			argImageId = clitoolgoaws.GetAmiId(ec2Client, *argImageName)
 			clitoolgoaws.CreateLaunchConfig(asClient, argLaunchConfigName, argInstanceProfile, argImageId, argInstanceType, argKeyName, sliceSGId)
 		}
 	}

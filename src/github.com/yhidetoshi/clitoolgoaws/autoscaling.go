@@ -40,12 +40,12 @@ func CreateLaunchConfig(asClient *autoscaling.AutoScaling, launchConfigName *str
 		LaunchConfigurationName: launchConfigName,
 		SecurityGroups:          securityGroups,
 	}
-	res, err := asClient.CreateLaunchConfiguration(params)
+	_, err := asClient.CreateLaunchConfiguration(params)
 	if err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
 	}
-	fmt.Println(res)
+	fmt.Println("Success!!")
 }
 
 // ASGの一覧取得
@@ -87,6 +87,18 @@ func ShowAutoScaling(asClient *autoscaling.AutoScaling) {
 		_instanceCount = 0
 	}
 	OutputFormat(allAutoScalingInfo, AS)
+}
+func ChangeLaunchConfig(asClient *autoscaling.AutoScaling, asgname *string, lcname *string) {
+	params := &autoscaling.UpdateAutoScalingGroupInput{
+		AutoScalingGroupName:    asgname,
+		LaunchConfigurationName: lcname,
+	}
+	_, err := asClient.UpdateAutoScalingGroup(params)
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
+	fmt.Println("Success!!")
 }
 
 func ChangeMaxSizeInstances(asClient *autoscaling.AutoScaling, asgname *string, maxnum *int64) {

@@ -55,6 +55,7 @@ var (
 	argRegister         = flag.Bool("register", false, "Register Instances to ELB")
 	argDeregister       = flag.Bool("deregister", false, "Deregister Instances to ELB")
 	argMax              = flag.Bool("max", false, "input maxsize num")
+	argUpdate           = flag.Bool("update", false, "input laucnconfig name")
 	argMin              = flag.Bool("min", false, "input minsize num")
 	argDesire           = flag.Bool("desire", false, "input desiresize num")
 )
@@ -139,6 +140,9 @@ func main() {
 				clitoolgoaws.ChangeMinSizeInstances(asClient, argASG, argNum)
 			} else if *argDesire {
 				clitoolgoaws.ChangeDesireSizeInstances(asClient, argASG, argNum)
+			}
+			if *argUpdate {
+				clitoolgoaws.ChangeLaunchConfig(asClient, argASG, argLaunchConfigName)
 			}
 		} else {
 			clitoolgoaws.ShowAutoScaling(asClient)

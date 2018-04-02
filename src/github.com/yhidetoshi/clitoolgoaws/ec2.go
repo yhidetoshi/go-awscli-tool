@@ -174,6 +174,29 @@ func ListAMI(ec2Client *ec2.EC2, images []*string) {
 	OutputFormat(allAmiInfo, AMI)
 }
 
+func CheckStatusAMI(ec2Client *ec2.EC2, imagename string) {
+	var owner []*string
+	var _owner []string = []string{"self"}
+	var amistate string
+	owner = aws.StringSlice(_owner)
+
+	params := &ec2.DescribeImagesInput{
+		Owners: owner,
+	}
+	res, err := ec2Client.DescribeImages(params)
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
+	for _, resInfo := range res.Images {
+		if *resInfo.Name == imagename {
+			amistate = *resInfo.State
+		}
+	}
+	fmt.Println(amistate)
+
+}
+
 func GetAmiId(ec2Client *ec2.EC2, imagename string) *string {
 	var owner []*string
 	var _owner []string = []string{"self"}

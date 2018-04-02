@@ -56,6 +56,7 @@ var (
 	argsTerminate       = flag.Bool("terminate", false, "Instance terminate")
 	argRegister         = flag.Bool("register", false, "Register Instances to ELB")
 	argDeregister       = flag.Bool("deregister", false, "Deregister Instances to ELB")
+	argCheckstate       = flag.Bool("checkstate", false, "Deregister Instances to ELB")
 	argMax              = flag.Bool("max", false, "input maxsize num")
 	argUpdate           = flag.Bool("update", false, "input laucnconfig name")
 	argMin              = flag.Bool("min", false, "input minsize num")
@@ -82,6 +83,9 @@ func main() {
 	if *argResource == "ec2" {
 		if *argAMIList {
 			clitoolgoaws.ListAMI(ec2Client, nil)
+			exeFlag = false
+		} else if *argCheckstate {
+			clitoolgoaws.CheckStatusAMI(ec2Client, *argImageName)
 			exeFlag = false
 		} else if *argDeregister {
 			clitoolgoaws.DeregisterAMI(ec2Client, argAmiId)

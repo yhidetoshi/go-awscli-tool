@@ -19,9 +19,11 @@ var (
 	argRegion                 = flag.String("region", "ap-northeast-1", "slect Region")
 	argInstances              = flag.String("instances", "", " slect Instance ID or Instance Tag:Name or RDSinstanceName ")
 	argELBName                = flag.String("elbname", "", "input elbname")
+	argTargetGroupName        = flag.String("targetgroup", "", "input target group name")
 	argAmiName                = flag.String("aminame", "", "input ami name")
 	argAmiId                  = flag.String("amiid", "", "input ami id")
 	argBucket                 = flag.String("bucket", "", "input bucket name")
+	argTargetGroupArn         = flag.String("grouparn", "", "input target group arn")
 	argObject                 = flag.String("object", "", "input object name")
 	argASG                    = flag.String("asg", "", "input autoscaling group name")
 	argLaunchConfigName       = flag.String("lcname", "", "input launchconfig name")
@@ -42,6 +44,7 @@ var (
 	argStop                   = flag.Bool("stop", false, "Instance stop")
 	argStart                  = flag.Bool("start", false, "Instance start")
 	argShow                   = flag.Bool("show", false, "show ELB backendend Instances")
+	argStatus                 = flag.Bool("status", false, "check status")
 	argBilling                = flag.Bool("billing", false, "get billing info")
 	argBucketList             = flag.Bool("bucketlist", false, "get billing info")
 	argSecurityGroup          = flag.Bool("sglist", false, "get security group")
@@ -70,6 +73,7 @@ func main() {
 	ec2Client := clitoolgoaws.AwsEC2Client(*argProfile, *argRegion)
 	rdsClient := clitoolgoaws.AwsRDSClient(*argProfile, *argRegion)
 	elbClient := clitoolgoaws.AwsELBClient(*argProfile, *argRegion)
+	albClient := clitoolgoaws.AwsALBClient(*argProfile, *argRegion)
 	cloudwatchClient := clitoolgoaws.AwsCloudwatchClient(*argProfile, *argRegion)
 	kinesisClient := clitoolgoaws.AwsKinesisClient(*argProfile, *argRegion)
 	iamClient := clitoolgoaws.AwsIAMClient(*argProfile, *argRegion)
@@ -222,8 +226,16 @@ func main() {
 			clitoolgoaws.ShowBuckets(S3Client)
 		}
 	}
+	// ALBのコマンド
+	if *argResource == "alb" {
+		if *argTargetGroupName != "" {
+			if *argStatus {
+				clitoolgoaws.GetALBInstanceInfo(albClient, argTargetGroupArn)
+			}
+		}
+	}
 
-	// ELBのコマンド
+	// ELB(CLB)のコマンド
 	var elasticLoadbalancers []*string
 	if *argResource == "elb" {
 		if *argELBName != "" {

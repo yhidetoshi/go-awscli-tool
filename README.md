@@ -42,7 +42,7 @@
     > $ ore-aws -resource=ec2 -deregister -amiid=<ami-id> -profile=<PROFILE>
   
   ■ ElasticIPの一覧をを取得
-    > $ ore-aws -resource=ec2 -deleteeip -eiplist -profile=<PROFILE>
+    > $ ore-aws -resource=ec2 -eiplist -profile=<PROFILE>
   
   ■ ElasticIPのリリース
     > $ ore-aws -resource=ec2 -deleteeip -allocationid=<ALLOCATIONID> -profile=<PROFILE>

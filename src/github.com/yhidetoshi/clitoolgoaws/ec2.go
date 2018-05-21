@@ -310,6 +310,9 @@ func ListEC2Instances(ec2Client *ec2.EC2, ec2Instances []*string) {
 			if instanceInfo.SubnetId == nil {
 				instanceInfo.SubnetId = aws.String("NULL")
 			}
+			if instanceInfo.KeyName == nil {
+				instanceInfo.KeyName = aws.String("NULL")
+			}
 
 			instance := []string{
 				tagName,

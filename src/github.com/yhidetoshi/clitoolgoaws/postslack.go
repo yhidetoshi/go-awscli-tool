@@ -10,7 +10,7 @@ import (
 
 const (
 	USERNAME = "GoBot"
-	CHANNEL  = "iot_platform_alert"
+	CHANNEL  = "test"
 	URL      = "https://hooks.slack.com/services/XXXXXX"
 )
 

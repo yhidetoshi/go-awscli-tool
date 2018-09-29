@@ -1,15 +1,13 @@
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Go_study/gophertraining.png)
 
 # go-awscli-tool
-- Go言語でaws-sdk-goを利用してAWSを制御するツールです。(勉強しながら作っているので、どこかできれいに作りなおします...)
-- 使用するには awsのapiをコールできる設定が必要です。--> (./awsの設定)
+- Go言語でaws-sdk-goを利用してAWSを制御するツールです。(勉強しながら作っています)
 
 (main以外のソースコード)
 (go get) https://github.com/yhidetoshi/clitoolgoaws
 
 - go buildでファイルをクロスコンパイルする
 - /usr/local/bin等の場所に保存する。(以下は /usr/local/binに `ore-aws` という名前で配置)
-
 - macOSとLinux(amd64)とWindows用にクロスコンパイルしたバイナリはこちら
   - https://github.com/yhidetoshi/go-awscli-tool/tree/master/bin
     

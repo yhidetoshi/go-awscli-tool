@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/yhidetoshi/yhidetoshi/go-awscli-tool/lib"
+	"github.com/yhidetoshi/clitoolgoaws"
 )
 
 const (

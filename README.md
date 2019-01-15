@@ -1,3 +1,5 @@
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Go_study/gophertraining.png)
 
 # go-awscli-tool
